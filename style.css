@@ -39,6 +39,7 @@ h2 { margin: 0; font: 400 clamp(2.2rem, 4.6vw, 3.8rem)/1 var(--display); letter-
 .kicker { display: flex; gap: 14px; align-items: center; margin-bottom: 28px; }
 .kicker::before { content: ""; width: 36px; height: 1px; background: currentColor; }
 h1 { margin: 0; font: 400 clamp(3.3rem, 10.5vw, 9.6rem)/.92 var(--display); letter-spacing: -.012em; }
+h1 .hl { color: var(--violet); }
 h1 em { display: block; font: italic 400 .62em/1.05 var(--serif); letter-spacing: -.02em; color: var(--violet); margin-top: .18em; }
 .hero-foot { display: grid; grid-template-columns: minmax(0, 30rem) auto; justify-content: space-between; align-items: end; gap: 32px; margin-top: clamp(32px, 5vw, 56px); }
 .lede { margin: 0; font-size: clamp(1.05rem, 1.6vw, 1.2rem); color: var(--ink-2); }
