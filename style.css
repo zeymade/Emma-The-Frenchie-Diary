@@ -131,8 +131,9 @@ footer p { margin: 0; }
 
 .motion { --ease-out: cubic-bezier(.215,.61,.355,1); --ease-io: cubic-bezier(.65,0,.35,1); }
 /* Wörter gleiten aus einer Maske */
-.motion [data-split] .w { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 .06em .14em; margin: 0 -.06em -.14em; }
-.motion [data-split] .w > span { display: inline-block; transform: translateY(108%); transition: transform 1.05s var(--ease-out) calc(var(--d, 0ms) + var(--wi) * 70ms); }
+/* Maske großzügig: Abril-Unterlängen (g, ß) reichen ~0,3em unter die Grundlinie, Umlaute über die Zeilenhöhe */
+.motion [data-split] .w { display: inline-block; overflow: hidden; vertical-align: top; padding: .12em .08em .34em; margin: -.12em -.08em -.34em; }
+.motion [data-split] .w > span { display: inline-block; transform: translateY(150%); transition: transform 1.05s var(--ease-out) calc(var(--d, 0ms) + var(--wi) * 70ms); }
 .motion [data-split].is-in .w > span { transform: none; }
 /* Blöcke blenden von unten ein */
 .motion [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity .6s linear var(--d, 0ms), transform 1s var(--ease-out) var(--d, 0ms); }
