@@ -54,13 +54,10 @@ h1 em { display: block; font: italic 400 .62em/1.05 var(--serif); letter-spacing
 /* Emma schaut über die Linie – nur unten beschnitten, damit die Ohren beim Überschwingen frei bleiben */
 .peek { position: relative; margin-top: clamp(24px, 4vw, 48px); }
 .peek .clip { width: min(560px, 82vw); margin-left: auto; margin-right: clamp(0px, 8vw, 120px); clip-path: inset(-50% -10% 0 -10%); }
+.emma { transform-origin: 50% 100%; will-change: transform; }
 .peek img { display: block; width: 100%; height: auto; }
 @media (prefers-color-scheme: dark) { .peek img { filter: drop-shadow(0 0 1.5px #f3eee6) drop-shadow(0 0 .5px #f3eee6); } }
-.peek::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--rule); }
-@media (prefers-reduced-motion: no-preference) {
-  .peek img { animation: peek 1.1s cubic-bezier(.22,1.2,.36,1) .35s both; }
-  @keyframes peek { from { transform: translateY(101%); } }
-}
+.peek::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--rule); transform-origin: 0 50%; }
 
 /* ── Tagebuch ─────────────────────────── */
 .diary, .doc { padding-block: clamp(64px, 10vw, 128px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); gap: clamp(32px, 6vw, 96px); }
@@ -95,6 +92,12 @@ h3 { margin: 10px 0 0; font: 600 1.25rem/1.25 var(--sans); letter-spacing: -.01e
 .close .btn:hover { background: var(--paper); opacity: .88; }
 .close .meta { color: color-mix(in srgb, var(--paper) 70%, transparent); margin-top: 12px; }
 
+/* ── Statement ────────────────────────── */
+.statement { padding-block: clamp(72px, 12vw, 160px); }
+.statement p { margin: 0; max-width: 16em; font: 400 clamp(2rem, 5.2vw, 4.4rem)/1.08 var(--display); letter-spacing: -.01em; }
+.statement .hl { color: var(--violet); }
+.sw { transition: opacity .25s linear; }
+
 /* ── Unterseiten ──────────────────────── */
 .doc { border-top: 3px solid var(--rule); margin-top: clamp(24px, 4vw, 48px); padding-top: clamp(40px, 6vw, 72px); }
 .doc h1 { font-size: clamp(2.6rem, 5.6vw, 4.6rem); line-height: .98; }
@@ -117,6 +120,52 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
 footer a { text-underline-offset: 3px; }
 footer p { margin: 0; }
 .doc + footer { border-top: 1px solid var(--line); }
+
+/* ── Bewegung (nur mit .motion, gesetzt ohne „Bewegung reduzieren“) ── */
+@view-transition { navigation: auto; }
+::view-transition-old(root) { animation: .35s cubic-bezier(.55,.055,.675,.19) both vt-out; }
+::view-transition-new(root) { animation: .6s cubic-bezier(.215,.61,.355,1) both vt-in; }
+@keyframes vt-out { to { opacity: 0; transform: translateY(-24px); } }
+@keyframes vt-in { from { opacity: 0; transform: translateY(32px); } }
+@media (prefers-reduced-motion: reduce) { ::view-transition-old(root), ::view-transition-new(root) { animation: none; } }
+
+.motion { --ease-out: cubic-bezier(.215,.61,.355,1); --ease-io: cubic-bezier(.65,0,.35,1); }
+/* Wörter gleiten aus einer Maske */
+.motion [data-split] .w { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 .06em .14em; margin: 0 -.06em -.14em; }
+.motion [data-split] .w > span { display: inline-block; transform: translateY(108%); transition: transform 1.05s var(--ease-out) calc(var(--d, 0ms) + var(--wi) * 70ms); }
+.motion [data-split].is-in .w > span { transform: none; }
+/* Blöcke blenden von unten ein */
+.motion [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity .6s linear var(--d, 0ms), transform 1s var(--ease-out) var(--d, 0ms); }
+.motion [data-reveal].is-in { opacity: 1; transform: none; }
+/* Tagebuch: der Farbpunkt setzt sich wie ein Stempel */
+.motion .log li[data-reveal] .what::before { scale: 0; transition: scale .5s cubic-bezier(.34,1.8,.64,1) calc(var(--d, 0ms) + 250ms); }
+.motion .log li.is-in .what::before { scale: 1; }
+/* Linien zeichnen sich */
+.motion .kicker::before { transform: scaleX(0); transform-origin: 0 50%; transition: transform .9s var(--ease-io) .1s; }
+.motion .kicker.is-in::before { transform: none; }
+.motion .peek::after { transform: scaleX(0); transition: transform 1.2s var(--ease-io) .5s; }
+.motion .peek.is-in::after { transform: none; }
+.motion .points { border-top-color: transparent; position: relative; }
+.motion .points::before { content: ""; position: absolute; left: var(--gutter); right: var(--gutter); top: -3px; height: 3px; background: var(--rule); transform: scaleX(0); transform-origin: 0 50%; transition: transform 1.2s var(--ease-io); }
+.motion .points.is-in::before { transform: none; }
+/* Emma schaut erst, wenn die Linie steht */
+.motion .peek img { transform: translateY(101%); transition: transform 1.1s cubic-bezier(.22,1.2,.36,1) 1.3s; }
+.motion .peek.is-in img { transform: none; }
+.motion .close img[data-reveal] { transform: translateY(28px) scale(.86) rotate(-6deg); }
+.motion .close img[data-reveal].is-in { transform: none; }
+
+/* Buttons: Farbe läuft von links ein, Magnet-Effekt per JS */
+.btn { position: relative; overflow: hidden; isolation: isolate; transition: transform .2s cubic-bezier(.2,.8,.2,1), translate .5s cubic-bezier(.2,.8,.2,1), color .3s, opacity .2s; }
+.btn::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--violet); transform: scaleX(0); transform-origin: 100% 50%; transition: transform .5s var(--ease-io, cubic-bezier(.65,0,.35,1)); }
+.btn:hover { background: var(--ink); color: var(--paper); }
+.btn:hover::before { transform: none; transform-origin: 0 50%; }
+.close .btn:hover { background: var(--paper); opacity: 1; }
+
+/* Eigener Cursor (nur Maus) */
+.has-cursor, .has-cursor a, .has-cursor button { cursor: none; }
+.cursor { position: fixed; left: 0; top: 0; z-index: 100; width: 12px; height: 12px; margin: -6px 0 0 -6px; pointer-events: none; }
+.cursor::before { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--violet); transition: scale .35s cubic-bezier(.34,1.56,.64,1), opacity .2s; }
+.cursor.is-link::before { scale: 4.5; opacity: .22; }
 
 /* ── Responsiv ────────────────────────── */
 @media (max-width: 860px) {

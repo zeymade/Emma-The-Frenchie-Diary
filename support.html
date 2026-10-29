@@ -8,7 +8,9 @@
 <meta name="theme-color" content="#15141f" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="assets/icon.png">
 <link rel="apple-touch-icon" href="assets/icon.png">
-<link rel="stylesheet" href="style.css?v=4">
+<link rel="stylesheet" href="style.css?v=5">
+<script>if (matchMedia("(prefers-reduced-motion: no-preference)").matches) document.documentElement.classList.add("motion")</script>
+<script src="main.js?v=1" defer></script>
 </head>
 <body>
 <a class="skip" href="#inhalt">Zum Inhalt</a>
@@ -24,10 +26,10 @@
 <main id="inhalt" class="wrap doc">
   <div class="doc-intro">
     <p class="label">Emma – The Frenchie Diary</p>
-    <h1>Support &amp; Kontakt</h1>
+    <h1 data-split>Support &amp; Kontakt</h1>
     <p>Fragen, Fehler oder Ideen? Schreib uns an <a href="mailto:hey@zeymade.ai">hey@zeymade.ai</a>. Wir antworten in der Regel innerhalb weniger Werktage.</p>
   </div>
-  <div class="doc-body">
+  <div class="doc-body" data-reveal style="--d:300ms">
     <section>
       <h2>Häufige Fragen</h2>
       <dl class="faq">

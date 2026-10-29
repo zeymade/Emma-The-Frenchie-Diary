@@ -10,7 +10,9 @@
 <link rel="icon" href="assets/icon.png">
 <link rel="apple-touch-icon" href="assets/icon.png">
 <link rel="preload" href="assets/AbrilFatface-Regular.ttf" as="font" type="font/ttf" crossorigin>
-<link rel="stylesheet" href="style.css?v=4">
+<link rel="stylesheet" href="style.css?v=5">
+<script>if (matchMedia("(prefers-reduced-motion: no-preference)").matches) document.documentElement.classList.add("motion")</script>
+<script src="main.js?v=1" defer></script>
 </head>
 <body>
 <a class="skip" href="#inhalt">Zum Inhalt</a>
@@ -26,11 +28,11 @@
 
 <main id="inhalt">
   <section class="wrap hero" aria-labelledby="titel">
-    <p class="kicker">The Frenchie Diary<span class="wide"> · für iPhone &amp; iPad</span></p>
-    <h1 id="titel">Emma führt <span class="hl">Tagebuch</span>.</h1>
+    <p class="kicker" data-reveal><span>The Frenchie Diary<span class="wide"> · für iPhone &amp; iPad</span></span></p>
+    <h1 id="titel" data-split>Emma führt <span class="hl">Tagebuch</span>.</h1>
     <div class="hero-foot">
-      <p class="lede">Futter, Gassi, Gewicht und Atmung – mit einem Fingertipp notiert. Gemacht für <strong>Französische Bulldoggen, Möpse und alle kurzen Nasen</strong>, die bei Hitze besonderen Schutz brauchen.</p>
-      <div class="cta">
+      <p class="lede" data-reveal style="--d:450ms">Futter, Gassi, Gewicht und Atmung – mit einem Fingertipp notiert. Gemacht für <strong>Französische Bulldoggen, Möpse und alle kurzen Nasen</strong>, die bei Hitze besonderen Schutz brauchen.</p>
+      <div class="cta" data-reveal style="--d:600ms">
         <!-- TODO: App-Store-Link mit echter App-ID ersetzen -->
         <a class="btn" href="https://apps.apple.com/de/app/id0000000000">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.74c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.77-3.32-1.8-1.41-.14-2.76.83-3.47.83-.72 0-1.82-.81-3-.79-1.54.02-2.96.9-3.76 2.28-1.6 2.78-.41 6.9 1.15 9.16.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.24-.02 2.02-1.12 2.77-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.39-.92-2.4-3.65zM14.1 5.98c.63-.77 1.06-1.83.94-2.89-.91.04-2.01.61-2.67 1.37-.58.67-1.1 1.76-.96 2.79 1.01.08 2.05-.52 2.69-1.27z"/></svg>
@@ -39,40 +41,44 @@
         <span class="meta">Kostenlos · ohne Konto · ohne Werbung</span>
       </div>
     </div>
-    <div class="peek"><div class="clip"><img src="assets/emma.png" alt="Zeichnung von Emma, einer Französischen Bulldogge, die über eine Linie schaut" width="1200" height="643"></div></div>
+    <div class="peek"><div class="clip"><div class="emma"><img src="assets/emma.png" alt="Zeichnung von Emma, einer Französischen Bulldogge, die über eine Linie schaut" width="1200" height="643"></div></div></div>
   </section>
 
   <section class="wrap diary" id="tagebuch" aria-labelledby="tag">
     <div class="diary-intro">
-      <p class="label">Ein Dienstag im Oktober</p>
-      <h2 id="tag">So sieht ein Tag mit Emma aus.</h2>
-      <p>Zehn Aktivitäten, je ein Fingertipp. Aus kleinen Notizen wird ein Verlauf, der zeigt, wie es deinem Hund wirklich geht – und den du beim Tierarzt einfach aufschlägst.</p>
+      <p class="label" data-reveal>Ein Dienstag im Oktober</p>
+      <h2 id="tag" data-split>So sieht ein Tag mit Emma aus.</h2>
+      <p data-reveal>Zehn Aktivitäten, je ein Fingertipp. Aus kleinen Notizen wird ein Verlauf, der zeigt, wie es deinem Hund wirklich geht – und den du beim Tierarzt einfach aufschlägst.</p>
     </div>
     <ol class="log">
-      <li><time>06:48</time><div class="what" style="--c:var(--pee)">Pipi</div><p class="note">Kurz und zielstrebig. Es regnet.</p></li>
-      <li><time>07:15</time><div class="what" style="--c:var(--food)">Futter <span>110 g von 220 g</span></div><p class="note">Napf leer in vierzig Sekunden.</p></li>
-      <li><time>10:30</time><div class="what" style="--c:var(--water)">Wasser</div></li>
-      <li><time>12:40</time><div class="what" style="--c:var(--snack)">Snack <span>Kauknochen · 12 g</span></div><p class="note">Aus der eigenen Snack-Liste, einmal antippen.</p></li>
-      <li class="alert"><time>13:05</time><div class="what" style="--c:var(--play)">Gassi <span class="flag"><svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M6 .8 11.4 10.6H.6z"/></svg>Hitze · 29 °C</span></div><p class="note">Über deinem Schwellenwert. Lieber später – Schatten, Wasser, Sofa.</p></li>
-      <li><time>17:20</time><div class="what" style="--c:var(--poop)">Häufchen <span>Konsistenz ideal</span></div></li>
-      <li><time>19:00</time><div class="what" style="--c:var(--med)">Medikament</div><p class="note">Erinnerung kam pünktlich. Erledigt.</p></li>
-      <li><time>22:10</time><div class="what" style="--c:var(--breath)">Atmung <span>leichtes Schnarchen</span></div><p class="note">Notiert für den nächsten Tierarztbesuch.</p></li>
+      <li data-reveal><time>06:48</time><div class="what" style="--c:var(--pee)">Pipi</div><p class="note">Kurz und zielstrebig. Es regnet.</p></li>
+      <li data-reveal><time>07:15</time><div class="what" style="--c:var(--food)">Futter <span>110 g von 220 g</span></div><p class="note">Napf leer in vierzig Sekunden.</p></li>
+      <li data-reveal><time>10:30</time><div class="what" style="--c:var(--water)">Wasser</div></li>
+      <li data-reveal><time>12:40</time><div class="what" style="--c:var(--snack)">Snack <span>Kauknochen · 12 g</span></div><p class="note">Aus der eigenen Snack-Liste, einmal antippen.</p></li>
+      <li class="alert" data-reveal><time>13:05</time><div class="what" style="--c:var(--play)">Gassi <span class="flag"><svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M6 .8 11.4 10.6H.6z"/></svg>Hitze · 29 °C</span></div><p class="note">Über deinem Schwellenwert. Lieber später – Schatten, Wasser, Sofa.</p></li>
+      <li data-reveal><time>17:20</time><div class="what" style="--c:var(--poop)">Häufchen <span>Konsistenz ideal</span></div></li>
+      <li data-reveal><time>19:00</time><div class="what" style="--c:var(--med)">Medikament</div><p class="note">Erinnerung kam pünktlich. Erledigt.</p></li>
+      <li data-reveal><time>22:10</time><div class="what" style="--c:var(--breath)">Atmung <span>leichtes Schnarchen</span></div><p class="note">Notiert für den nächsten Tierarztbesuch.</p></li>
     </ol>
   </section>
 
+  <section class="wrap statement" aria-label="Hitze-Warnung">
+    <p data-scrub>Für kurze Nasen wird der Sommer schnell gefährlich. Emma prüft beim Gassi-Eintrag die Temperatur – und warnt dich, wenn es <span class="hl">zu heiß</span> ist.</p>
+  </section>
+
   <section class="wrap points" aria-label="Was Emma ausmacht">
-    <article>
-      <span class="num" aria-hidden="true">01</span>
+    <article data-reveal>
+      <span class="num" aria-hidden="true" data-parallax="-60">01</span>
       <h3>Für kurze Nasen gemacht</h3>
       <p>Beim Gassi-Eintrag prüft Emma Temperatur und amtliche Hitzewarnungen an deinem Standort. Den Schwellenwert legst du selbst fest. Schnarchen, Röcheln und Rückwärtsniesen protokollierst du gleich mit.</p>
     </article>
-    <article>
-      <span class="num" aria-hidden="true">02</span>
+    <article data-reveal>
+      <span class="num" aria-hidden="true" data-parallax="-60">02</span>
       <h3>Veränderungen früh sehen</h3>
       <p>Gewicht, Futtermenge und Konsistenz im Verlauf über 7, 30 oder 90 Tage. Dazu Erinnerungen für Gassi, Medikamente, Wurmkur, Impfung und Tierarzt.</p>
     </article>
-    <article>
-      <span class="num" aria-hidden="true">03</span>
+    <article data-reveal>
+      <span class="num" aria-hidden="true" data-parallax="-60">03</span>
       <h3>Bleibt bei dir</h3>
       <p>Kein Konto, kein Tracking, keine Werbung. Alle Einträge liegen ausschließlich auf deinem Gerät. Zum Sichern oder Umziehen exportierst du sie als Datei.</p>
     </article>
@@ -80,14 +86,14 @@
 
   <section class="close" aria-labelledby="schluss">
     <div class="wrap">
-      <img src="assets/icon.png" alt="App-Icon von Emma" width="156" height="156" loading="lazy">
+      <img data-reveal src="assets/icon.png" alt="App-Icon von Emma" width="156" height="156" loading="lazy">
       <div>
-        <h2 id="schluss">Emma –<em>The Frenchie Diary</em></h2>
+        <h2 id="schluss" data-split>Emma –<em>The Frenchie Diary</em></h2>
         <a class="btn" href="https://apps.apple.com/de/app/id0000000000">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.74c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.77-3.32-1.8-1.41-.14-2.76.83-3.47.83-.72 0-1.82-.81-3-.79-1.54.02-2.96.9-3.76 2.28-1.6 2.78-.41 6.9 1.15 9.16.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.24-.02 2.02-1.12 2.77-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.39-.92-2.4-3.65zM14.1 5.98c.63-.77 1.06-1.83.94-2.89-.91.04-2.01.61-2.67 1.37-.58.67-1.1 1.76-.96 2.79 1.01.08 2.05-.52 2.69-1.27z"/></svg>
           Im App Store laden
         </a>
-        <p class="meta">Kostenlos für iPhone &amp; iPad · ab iOS 26.4 · Deutsch</p>
+        <p class="meta" data-reveal style="--d:300ms">Kostenlos für iPhone &amp; iPad · ab iOS 26.4 · Deutsch</p>
       </div>
     </div>
   </section>
